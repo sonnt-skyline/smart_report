@@ -1,0 +1,555 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body, #root, .actions-status-page {
+  background: #f7ede2 !important;
+  color: #222; /* Default readable text color */
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.actions-status-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: left;
+  background: none;
+  color: #222;
+  padding: 2rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-group {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem 0;
+  background: none;
+  border-radius: 10px;
+  box-shadow: none;
+  color: #222;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-group h2 {
+  color: #3a3a7a;
+  margin-bottom: 1rem;
+}
+
+.actions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  background: #fff;
+  color: #222;
+}
+.actions-table th, .actions-table td {
+  border: 1px solid #e0e0e0;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  color: #222;
+  font-size: 1rem;
+}
+
+/* Add a little more weight to colored status text for clarity */
+.actions-table td[style*="color: green"] {
+  color: #217a2b !important;
+  font-weight: 600;
+}
+.actions-table td[style*="color: red"] {
+  color: #c62828 !important;
+  font-weight: 600;
+}
+.actions-table td[style*="color: #888"] {
+  color: #666 !important;
+  font-style: italic;
+}
+
+.actions-table th {
+  background: #f7f7fa;
+  color: #3a3a7a;
+  font-weight: 600;
+}
+.actions-table tr:nth-child(even) {
+  background: #fafaff;
+}
+
+.action-card {
+  border: none;
+  box-shadow: none;
+  background: none;
+  padding: 0;
+}
+
+.group-buttons {
+  margin-bottom: 1.5rem;
+}
+.group-buttons button {
+  margin-right: 0.7rem;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #3a3a7a;
+  background: #f7f7fa;
+  color: #3a3a7a;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.group-buttons button.active,
+.group-buttons button:hover {
+  background: #3a3a7a;
+  color: #fff;
+}
+
+.category-legend {
+  margin-bottom: 1em;
+  gap: 1em;
+}
+
+.legend-item {
+  display: inline-block;
+  margin-left: 1em;
+  padding: 0.2em 0.7em;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #111;
+  background: #f7f3e8;
+}
+
+.legend-item.delivery {
+  background: #fff;
+}
+
+.legend-item.selfdev {
+  background: #f7f3e8;
+}
+
+.legend-item.solution {
+  background: #f9f9e3;
+}
+
+.actions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  background: #fff;
+  color: #222;
+}
+
+.actions-table th, .actions-table td {
+  border: 1px solid #e0e0e0;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  color: #222;
+  font-size: 1rem;
+}
+
+/* Add a little more weight to colored status text for clarity */
+.actions-table td[style*="color: green"] {
+  color: #217a2b !important;
+  font-weight: 600;
+}
+.actions-table td[style*="color: red"] {
+  color: #c62828 !important;
+  font-weight: 600;
+}
+.actions-table td[style*="color: #888"] {
+  color: #666 !important;
+  font-style: italic;
+}
+
+.actions-table th {
+  background: #f7f7fa;
+  color: #3a3a7a;
+  font-weight: 600;
+}
+.actions-table tr:nth-child(even) {
+  background: #fafaff;
+}
+
+.action-card {
+  border: none;
+  box-shadow: none;
+  background: none;
+  padding: 0;
+}
+
+.group-buttons {
+  margin-bottom: 1.5rem;
+}
+.group-buttons button {
+  margin-right: 0.7rem;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #3a3a7a;
+  background: #f7f7fa;
+  color: #3a3a7a;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.group-buttons button.active,
+.group-buttons button:hover {
+  background: #3a3a7a;
+  color: #fff;
+}
+
+.category-legend {
+  margin-bottom: 1em;
+  gap: 1em;
+}
+
+.legend-item {
+  display: inline-block;
+  margin-left: 1em;
+  padding: 0.2em 0.7em;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #111;
+  background: #f7f3e8;
+}
+
+.legend-item.delivery {
+  background: #fff;
+}
+
+.legend-item.selfdev {
+  background: #f7f3e8;
+}
+
+.legend-item.solution {
+  background: #f9f9e3;
+}
+
+.progress-bar-outer {
+  width: 100%;
+  height: 16px;
+  background-color: #bebebe;
+  border-radius: 8px;
+  position: relative;
+  margin: 0.5rem 0;
+  overflow: hidden;
+}
+.progress-bar-inner {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+.progress-bar-label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  line-height: 16px;
+  font-weight: 700;
+  color: #111;
+  z-index: 2;
+  pointer-events: none;
+}
+.progress-bar-label-onbar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #111;
+  font-weight: bold;
+  font-size: 0.98em;
+  text-shadow: 0 1px 0 #fff, 0 0 2px #fff;
+}
+.progress-bar-label-outside {
+  margin-left: 0.7em;
+  color: #222;
+  font-weight: bold;
+  font-size: 1em;
+  min-width: 2.5em;
+  letter-spacing: 0.01em;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  border-radius: 12px;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 0.2em;
+  margin-left: 0.2em;
+}
+
+.tag {
+  display: inline-block;
+  background: #e0e7ff; /* soft blue background for high contrast */
+  color: #003366; /* dark blue text for contrast */
+  border-radius: 4px;
+  padding: 0.1em 0.5em;
+  margin-right: 0.3em;
+  font-size: 0.95em;
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.overdue {
+  color: #d32f2f;
+  font-weight: 700;
+}
+
+.overdue {
+  color: #7a0000 !important;
+  font-weight: bold;
+}
+
+.notes-section {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.2em;
+  background: #f7f7fa;
+  border-left: 4px solid #007bff;
+  padding: 0.7em 1.2em;
+  border-radius: 6px;
+  font-size: 1.05em;
+  color: #222;
+}
+
+.filter-buttons {
+  margin-bottom: 1.2em;
+  gap: 0.5em;
+}
+.filter-buttons button {
+  margin-right: 0.5em;
+  padding: 0.4em 1em;
+  border: 1px solid #3a3a7a;
+  background: #fff;
+  color: #3a3a7a;
+  border-radius: 5px;
+  font-size: 0.98em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.filter-buttons button.active,
+.filter-buttons button:hover {
+  background: #3a3a7a;
+  color: #fff;
+}
+
+.actions-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 350px);
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: stretch;
+  margin: 0 auto 2.5rem auto;
+  transition: transform 0.2s;
+  width: auto;
+  max-width: none;
+}
+
+@media (max-width: 1200px) {
+  .actions-card-list {
+    grid-template-columns: repeat(2, 350px);
+  }
+}
+
+@media (max-width: 800px) {
+  .actions-card-list {
+    grid-template-columns: repeat(1, 350px);
+  }
+}
+
+.action-card-mobile {
+  background: #fff;
+  color: #111;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin: 0;
+  padding: 1.2em 1.2em 1em 1.2em;
+  font-size: 1.08em;
+  border: 2px solid #e0e0e0;
+  width: 370px;
+  min-width: 370px;
+  max-width: 370px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  transition: transform 0.2s;
+}
+
+@media (max-width: 370px) {
+  .actions-card-list {
+    flex-direction: column;
+    gap: 1.2em 0;
+  }
+  .action-card-mobile {
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+    transform: scale(calc(100vw / 350));
+    transform-origin: left top;
+  }
+}
+
+@media (max-width: 1100px) {
+  .actions-card-list {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* No change, but ensures 3 cards fit if possible */
+  }
+}
+
+@media (max-width: 1100px) {
+  .actions-card-list {
+    /* If 3*350px + 2*gap > 100vw, scale down the whole row */
+    transform: scale(calc(min(1, (100vw - 2rem) / (3 * 350px + 2 * 1.5rem))));
+    transform-origin: top left;
+  }
+}
+
+@media (max-width: 750px) {
+  .actions-card-list {
+    /* For very small screens, scale for 2 cards */
+    transform: scale(calc(min(1, (100vw - 2rem) / (2 * 350px + 1 * 1.5rem))));
+    transform-origin: top left;
+  }
+}
+
+@media (max-width: 500px) {
+  .actions-card-list {
+    /* For mobile, scale for 1 card */
+    transform: scale(calc(min(1, (100vw - 1rem) / 350px)));
+    transform-origin: top left;
+  }
+}
+
+.status-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 0.5em;
+}
+
+.status-text {
+  font-weight: 700;
+  font-size: 1.1em;
+  min-width: 90px;
+  letter-spacing: 0.01em;
+}
+
+.progress-bar-outer {
+  flex: 1;
+  background: #eaeaea;
+  border-radius: 8px;
+  height: 1.2em;
+  position: relative;
+  margin-left: 0.5em;
+  min-width: 120px;
+  max-width: 220px;
+}
+
+.progress-bar-inner {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s;
+}
+
+.progress-bar-label-onbar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #111;
+  font-weight: bold;
+  font-size: 0.98em;
+  text-shadow: 0 1px 0 #fff, 0 0 2px #fff;
+}
+
+.assessments-row b {
+  color: #111;
+}
+
+.dashboard-header-row {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.dashboard-logo {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+.dashboard-title {
+  flex: 1;
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #3a3a7a;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.action-card-title {
+  font-size: 1.18em;
+  font-weight: 800;
+  color: #3a3a7a;
+  margin-bottom: 0.7em;
+  letter-spacing: 0.01em;
+  background: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  display: block;
+  text-align: left;
+  line-height: 1.3;
+  transition: color 0.2s;
+}
+.action-card-mobile:hover .action-card-title {
+  color: #005a00;
+}
