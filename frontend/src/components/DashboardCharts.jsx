@@ -1,0 +1,356 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from 'recharts';
+import styled from 'styled-components';
+import { useUserPreferences } from '../context/UserPreferencesContext';
+
+const ChartContainer = styled.div`
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  height: ${props => props.height || '400px'};
+`;
+
+const ChartHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+`;
+
+const ChartTitle = styled.h3`
+  margin: 0;
+  font-size: 1.2rem;
+`;
+
+const ChartControls = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+`;
+
+const SelectControl = styled.select`
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9rem;
+`;
+
+const NoDataMessage = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-style: italic;
+`;
+
+// Colors for pie charts
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
+
+// Bar chart component
+export const ObjectiveProgressChart = ({ data, timeframe, title }) => {
+  const { preferences } = useUserPreferences();
+  const chartType = preferences.chartType;
+  const chartTitle = title || 'Objective Progress';
+
+  if (!data || data.length === 0) {
+    return (
+      <ChartContainer>
+        <ChartHeader>
+          <ChartTitle>{chartTitle}</ChartTitle>
+          <ChartControls>
+            <SelectControl defaultValue={timeframe}>
+              <option value="week">This Week</option>
+              <option value="month">This Month</option>
+              <option value="quarter">This Quarter</option>
+            </SelectControl>
+          </ChartControls>
+        </ChartHeader>
+        <NoDataMessage>No data available</NoDataMessage>
+      </ChartContainer>
+    );
+  }
+  
+  return (
+    <ChartContainer>
+      <ChartHeader>
+        <ChartTitle>{chartTitle}</ChartTitle>
+        <ChartControls>
+          <SelectControl defaultValue={timeframe}>
+            <option value="week">This Week</option>
+            <option value="month">This Month</option>
+            <option value="quarter">This Quarter</option>
+          </SelectControl>
+        </ChartControls>
+      </ChartHeader>
+      <ResponsiveContainer width="100%" height="90%">
+        {chartType === 'bar' ? (
+          <BarChart
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="completed" fill="#82ca9d" name="Completed" />
+            <Bar dataKey="total" fill="#8884d8" name="Total" />
+          </BarChart>
+        ) : chartType === 'line' ? (
+          <LineChart
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="completed" stroke="#82ca9d" name="Completed" />
+            <Line type="monotone" dataKey="total" stroke="#8884d8" name="Total" />
+          </LineChart>
+        ) : (
+          <PieChart>
+            <Pie
+              data={data.map(item => ({ name: item.name, value: item.completed }))}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+              label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        )}
+      </ResponsiveContainer>
+    </ChartContainer>
+  );
+};
+
+// Define PropTypes AFTER the component
+ObjectiveProgressChart.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      completed: PropTypes.number.isRequired,
+      total: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  timeframe: PropTypes.string,
+  title: PropTypes.string,
+};
+
+ObjectiveProgressChart.defaultProps = {
+  timeframe: 'week',
+  title: 'Objective Progress',
+};
+
+// Status distribution chart
+export const StatusDistributionChart = ({ data, title }) => {
+  const { preferences } = useUserPreferences();
+  const chartType = preferences.chartType;
+  const chartTitle = title || 'Status Distribution';
+  
+  if (!data || data.length === 0) {
+    return (
+      <ChartContainer>
+        <ChartHeader>
+          <ChartTitle>{chartTitle}</ChartTitle>
+        </ChartHeader>
+        <NoDataMessage>No data available</NoDataMessage>
+      </ChartContainer>
+    );
+  }
+  
+  return (
+    <ChartContainer>
+      <ChartHeader>
+        <ChartTitle>{chartTitle}</ChartTitle>
+      </ChartHeader>
+      <ResponsiveContainer width="100%" height="90%">
+        {chartType === 'bar' ? (
+          <BarChart
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            layout="vertical"
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis type="number" />
+            <YAxis dataKey="status" type="category" />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="count" fill="#8884d8" name="Count" />
+          </BarChart>
+        ) : chartType === 'line' ? (
+          <LineChart
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="status" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="count" stroke="#8884d8" name="Count" />
+          </LineChart>
+        ) : (
+          <PieChart>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="count"
+              label={({ status, percent }) => `${status}: ${(percent * 100).toFixed(0)}%`}
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        )}
+      </ResponsiveContainer>
+    </ChartContainer>
+  );
+};
+
+// Define PropTypes AFTER the component
+StatusDistributionChart.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      status: PropTypes.string.isRequired,
+      count: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  title: PropTypes.string,
+};
+
+StatusDistributionChart.defaultProps = {
+  title: 'Status Distribution',
+};
+
+// Priority quadrant distribution
+export const QuadrantDistributionChart = ({ data, title }) => {
+  const { preferences } = useUserPreferences();
+  const chartType = preferences.chartType;
+  const chartTitle = title || 'Priority Quadrant Distribution';
+  
+  if (!data || data.length === 0) {
+    return (
+      <ChartContainer>
+        <ChartHeader>
+          <ChartTitle>{chartTitle}</ChartTitle>
+        </ChartHeader>
+        <NoDataMessage>No data available</NoDataMessage>
+      </ChartContainer>
+    );
+  }
+  
+  return (
+    <ChartContainer>
+      <ChartHeader>
+        <ChartTitle>{chartTitle}</ChartTitle>
+      </ChartHeader>
+      <ResponsiveContainer width="100%" height="90%">
+        {chartType === 'bar' ? (
+          <BarChart
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="objectives" fill="#8884d8" name="Objectives" />
+            <Bar dataKey="actions" fill="#82ca9d" name="Actions" />
+          </BarChart>
+        ) : chartType === 'line' ? (
+          <LineChart
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="objectives" stroke="#8884d8" name="Objectives" />
+            <Line type="monotone" dataKey="actions" stroke="#82ca9d" name="Actions" />
+          </LineChart>
+        ) : (
+          <PieChart>
+            <Pie
+              data={data.map(item => ({ name: item.name, value: item.objectives }))}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+              label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        )}
+      </ResponsiveContainer>
+    </ChartContainer>
+  );
+};
+
+// Define PropTypes AFTER the component
+QuadrantDistributionChart.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      objectives: PropTypes.number.isRequired,
+      actions: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  title: PropTypes.string,
+};
+
+QuadrantDistributionChart.defaultProps = {
+  title: 'Priority Quadrant Distribution',
+};
+
+// Export a default object containing all chart components
+export default {
+  ObjectiveProgressChart,
+  StatusDistributionChart,
+  QuadrantDistributionChart
+};

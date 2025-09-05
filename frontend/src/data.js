@@ -20,7 +20,7 @@ export const sampleActions = [
       text: 'Progress aligns with plan.'
     },
     member: 'Alice',
-    valueAdded: 'Client satisfaction and project progress',
+    parentObjective: 'Client satisfaction and project progress',
   },
   {
     id: 2,
@@ -43,7 +43,7 @@ export const sampleActions = [
       text: 'Good progress, keep pace.'
     },
     member: 'Alice',
-    valueAdded: 'React skills for future projects',
+    parentObjective: 'React skills for future projects',
   },
   {
     id: 3,
@@ -65,7 +65,7 @@ export const sampleActions = [
       text: 'Needs more detail.'
     },
     member: 'Alice',
-    valueAdded: 'Potential for innovative solutions',
+    parentObjective: 'Potential for innovative solutions',
   },
   {
     id: 4,
@@ -88,7 +88,7 @@ export const sampleActions = [
       text: 'No progress yet.'
     },
     member: 'Alice',
-    valueAdded: 'Keeps team and stakeholders informed',
+    parentObjective: 'Keeps team and stakeholders informed',
   },
   {
     id: 5,
@@ -110,7 +110,7 @@ export const sampleActions = [
       text: 'Meets all requirements.'
     },
     member: 'Alice',
-    valueAdded: 'Ensures solution quality and team alignment',
+    parentObjective: 'Ensures solution quality and team alignment',
   },
   {
     id: 6,
@@ -132,7 +132,7 @@ export const sampleActions = [
       text: 'No progress yet.'
     },
     member: 'Alice',
-    valueAdded: 'Upskilling for future responsibilities',
+    parentObjective: 'Upskilling for future responsibilities',
   },
   {
     id: 7,
@@ -155,7 +155,7 @@ export const sampleActions = [
       text: 'Behind schedule.'
     },
     member: 'Alice',
-    valueAdded: 'Restores deployment pipeline and reliability',
+    parentObjective: 'Restores deployment pipeline and reliability',
   },
   {
     id: 8,
@@ -177,8 +177,8 @@ export const sampleActions = [
       text: 'On schedule for release.'
     },
     member: 'Alice',
-    valueAdded: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
-    valueAddedLink: '',
+    parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
+    parentObjectiveLink: '',
   },
   {
     id: 9,
@@ -199,8 +199,8 @@ export const sampleActions = [
       text: 'Awaiting user responses.'
     },
     member: 'Alice',
-    valueAdded: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
-    valueAddedLink: '',
+    parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
+    parentObjectiveLink: '',
   },
   {
     id: 10,
@@ -222,8 +222,8 @@ export const sampleActions = [
       text: 'Bug resolution progressing well.'
     },
     member: 'Alice',
-    valueAdded: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
-    valueAddedLink: '',
+    parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
+    parentObjectiveLink: '',
   },
   {
     id: 11,
@@ -244,8 +244,8 @@ export const sampleActions = [
       text: 'Awaiting manager input.'
     },
     member: 'Alice',
-    valueAdded: 'Objective: Enhance team performance and development',
-    valueAddedLink: '',
+    parentObjective: 'Objective: Enhance team performance and development',
+    parentObjectiveLink: '',
   },
   {
     id: 12,
@@ -266,8 +266,8 @@ export const sampleActions = [
       text: 'Pending team input.'
     },
     member: 'Alice',
-    valueAdded: 'Objective: Enhance team performance and development',
-    valueAddedLink: '',
+    parentObjective: 'Objective: Enhance team performance and development',
+    parentObjectiveLink: '',
   },
   {
     id: 13,
@@ -288,7 +288,381 @@ export const sampleActions = [
       text: 'Awaiting team availability.'
     },
     member: 'Alice',
-    valueAdded: 'Objective: Enhance team performance and development',
-    valueAddedLink: '',
+    parentObjective: 'Objective: Enhance team performance and development',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 14,
+    title: 'Launch marketing campaign',
+    category: 'Customer Success',
+    subCategory: 'Marketing',
+    statusUpdates: [
+      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['marketing', 'campaign'],
+    deadline: '2025-06-20T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Campaign launched successfully.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Excellent execution.'
+    },
+    member: 'Bob',
+    parentObjective: 'Expand market reach',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 15,
+    title: 'Improve documentation',
+    category: 'Self development',
+    subCategory: 'Documentation',
+    statusUpdates: [
+      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['documentation'],
+    deadline: '2025-07-15T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Documentation improved.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Meets all standards.'
+    },
+    member: 'Bob',
+    parentObjective: 'Improve internal documentation',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 16,
+    title: 'Team building event',
+    category: 'Team management',
+    subCategory: 'Engagement',
+    statusUpdates: [
+      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['team', 'event'],
+    deadline: '2025-07-15T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Event held successfully.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Great participation.'
+    },
+    member: 'Carol',
+    parentObjective: 'Objective: Enhance team performance and development',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 17,
+    title: 'Performance review for team',
+    category: 'Team management',
+    subCategory: 'Review',
+    statusUpdates: [
+      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['review', 'performance'],
+    deadline: '2025-07-10T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'All reviews completed.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Excellent management.'
+    },
+    member: 'Carol',
+    parentObjective: 'Objective: Enhance team performance and development',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 18,
+    title: 'Critical bug fix',
+    category: 'Delivery',
+    subCategory: 'Bug Fix',
+    statusUpdates: [
+      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['bug', 'critical'],
+    deadline: '2025-06-28T18:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Bug fixed before deadline.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Resolved efficiently.'
+    },
+    member: 'Bob',
+    parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 19,
+    title: 'Customer onboarding',
+    category: 'Customer Success',
+    subCategory: 'Onboarding',
+    statusUpdates: [
+      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['onboarding'],
+    deadline: '2025-06-22T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Onboarding completed.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Smooth onboarding.'
+    },
+    member: 'David',
+    parentObjective: 'Expand market reach',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 20,
+    title: 'Internal process audit',
+    category: 'Solution+',
+    subCategory: 'Audit',
+    statusUpdates: [
+      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['audit'],
+    deadline: '2025-06-18T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Audit finished.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'No major issues.'
+    },
+    member: 'Eve',
+    parentObjective: 'Improve internal documentation',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 21,
+    title: 'Release v2.1 beta',
+    category: 'Delivery',
+    subCategory: 'Release',
+    statusUpdates: [
+      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['release', 'beta'],
+    deadline: '2025-07-01T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Beta released.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Release successful.'
+    },
+    member: 'Frank',
+    parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 22,
+    title: 'Security training',
+    category: 'Self development',
+    subCategory: 'Training',
+    statusUpdates: [
+      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['training', 'security'],
+    deadline: '2025-06-20T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Training completed.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Well done.'
+    },
+    member: 'Grace',
+    parentObjective: 'Upskilling for future responsibilities',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 23,
+    title: 'Customer feedback analysis',
+    category: 'Customer Success',
+    subCategory: 'Feedback',
+    statusUpdates: [
+      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['feedback', 'analysis'],
+    deadline: '2025-07-05T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Analysis complete.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Valuable insights.'
+    },
+    member: 'Helen',
+    parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
+    parentObjectiveLink: '',
+  },
+  {
+    id: 24,
+    title: 'Team knowledge sharing',
+    category: 'Team management',
+    subCategory: 'Engagement',
+    statusUpdates: [
+      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+    ],
+    tags: ['team', 'knowledge'],
+    deadline: '2025-07-15T12:00',
+    selfAssessment: {
+      status: 'on track',
+      text: 'Session held.'
+    },
+    aiAssessment: {
+      status: 'on track',
+      text: 'Great engagement.'
+    },
+    member: 'Ivy',
+    parentObjective: 'Objective: Enhance team performance and development',
+    parentObjectiveLink: '',
+  }
+];
+
+export const sampleObjectives = [
+  {
+    name: 'Client satisfaction and project progress',
+    valueDescription: 'Delivering milestones and maintaining client trust through timely project progress.',
+    deadline: '2025-06-30',
+    parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
+    keyResult: [
+      'Milestone 1 delivered',
+      'Positive client feedback'
+    ],
+    importance: 4,
+    urgency: 4
+  },
+  {
+    name: 'React skills for future projects',
+    valueDescription: 'Upskill team members in React to enable future project success.',
+    deadline: '2025-06-20',
+    parentObjective: 'Objective: Enhance team performance and development',
+    keyResult: [
+      'React course completed',
+      'Demo project built'
+    ],
+    importance: 3,
+    urgency: 3
+  },
+  {
+    name: 'Potential for innovative solutions',
+    valueDescription: 'Encourage and implement innovative solutions to improve processes.',
+    deadline: '2025-07-10',
+    parentObjective: 'Objective: Enhance team performance and development',
+    keyResult: [
+      'New solution proposal accepted by team'
+    ],
+    importance: 3,
+    urgency: 2
+  },
+  {
+    name: 'Keeps team and stakeholders informed',
+    valueDescription: 'Ensure all stakeholders are updated on progress and issues.',
+    deadline: '2025-06-10',
+    parentObjective: 'Objective: Enhance team performance and development',
+    keyResult: [
+      'Weekly reports submitted on time'
+    ],
+    importance: 2,
+    urgency: 4
+  },
+  {
+    name: 'Ensures solution quality and team alignment',
+    valueDescription: 'Maintain high quality standards and team consensus on solutions.',
+    deadline: '2025-06-15',
+    parentObjective: 'Objective: Enhance team performance and development',
+    keyResult: [
+      'All solutions reviewed',
+      'All solutions approved'
+    ],
+    importance: 4,
+    urgency: 3
+  },
+  {
+    name: 'Upskilling for future responsibilities',
+    valueDescription: 'Prepare team members for upcoming roles and challenges.',
+    deadline: '2025-07-01',
+    parentObjective: 'Objective: Enhance team performance and development',
+    keyResult: [
+      'Training completed',
+      'New skills demonstrated'
+    ],
+    importance: 3,
+    urgency: 2
+  },
+  {
+    name: 'Restores deployment pipeline and reliability',
+    valueDescription: 'Fix deployment issues to ensure reliable releases.',
+    deadline: '2025-06-05',
+    parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
+    keyResult: [
+      'Deployment bug fixed',
+      'Pipeline stable'
+    ],
+    importance: 5,
+    urgency: 5
+  },
+  {
+    name: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
+    valueDescription: 'Deliver features that meet customer needs and timelines.',
+    deadline: '2025-07-10',
+    parentObjective: '',
+    keyResult: [
+      'v2.0 released',
+      'User feedback positive'
+    ],
+    importance: 5,
+    urgency: 4
+  },
+  {
+    name: 'Objective: Enhance team performance and development',
+    valueDescription: 'Foster a high-performing and continuously developing team.',
+    deadline: '2025-07-31',
+    parentObjective: '',
+    keyResult: [
+      'Performance reviews completed',
+      'Team building activity held'
+    ],
+    importance: 4,
+    urgency: 3
+  },
+  // Additional objectives not referenced in sampleActions
+  {
+    name: 'Expand market reach',
+    valueDescription: 'Grow the user base by targeting new market segments.',
+    deadline: '2025-08-31',
+    parentObjective: '',
+    keyResult: [
+      '10% increase in new users'
+    ],
+    importance: 3,
+    urgency: 2
+  },
+  {
+    name: 'Improve internal documentation',
+    valueDescription: 'Ensure all processes and code are well documented for future maintainability.',
+    deadline: '2025-07-15',
+    parentObjective: 'Objective: Enhance team performance and development',
+    keyResult: [
+      'Documentation coverage reaches 95%'
+    ],
+    importance: 2,
+    urgency: 2
   }
 ];

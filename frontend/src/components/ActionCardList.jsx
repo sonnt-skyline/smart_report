@@ -1,8 +1,15 @@
 import { useRef, useEffect } from 'react';
-import ActionCard from './ActionCard';
+import ActionCard, { ActionCardWithTags } from './ActionCard';
+import ActionCardListOptimized from './ActionCardListOptimized';
 
-export default function ActionCardList({ actions }) {
+export default function ActionCardList({ actions, useTagsLayout = true, useOptimizedLayout = false }) {
   const listRef = useRef(null);
+  
+  // Use optimized layout if requested
+  if (useOptimizedLayout) {
+    return <ActionCardListOptimized actions={actions} />;
+  }
+  
   useEffect(() => {
     function handleResize() {
       if (!listRef.current) return;
@@ -21,11 +28,15 @@ export default function ActionCardList({ actions }) {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  
   if (!actions.length) return <p>No actions in this category.</p>;
+  
   return (
     <div className="actions-card-list" ref={listRef}>
       {actions.map(action => (
-        <ActionCard key={action.id} action={action} />
+        useTagsLayout ? 
+          <ActionCardWithTags key={action.id} action={action} /> :
+          <ActionCard key={action.id} action={action} />
       ))}
     </div>
   );

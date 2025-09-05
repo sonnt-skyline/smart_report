@@ -9,7 +9,7 @@ export default function GroupButtons({ groupBy, setGroupBy }) {
           className={groupBy === opt.value ? 'active' : ''}
           onClick={() => setGroupBy(opt.value)}
         >
-          Group by {opt.label}
+          {opt.label}
         </button>
       ))}
     </div>

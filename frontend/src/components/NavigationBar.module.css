@@ -1,0 +1,331 @@
+.navBar {
+  width: 100%;
+  background-color: var(--primary-color, #3a3a7a);
+  box-shadow: var(--shadow-md, 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23));
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navContainer {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md, 1rem) var(--spacing-lg, 1.5rem);
+}
+
+.navBrand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  color: white;
+  text-decoration: none;
+}
+
+.navLogo {
+  height: 36px;
+  width: auto;
+  display: block; /* Ensure it's always visible */
+}
+
+.brandTitle {
+  font-size: var(--font-size-xl, 1.5rem);
+  font-weight: 700;
+  margin: 0;
+  color: white;
+  display: block; /* Ensure it's always visible */
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg, 1.5rem);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  font-size: var(--font-size-md, 1rem);
+  font-weight: 500;
+  padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 1rem);
+  border-radius: var(--border-radius-sm, 4px);
+  transition: background-color var(--transition-speed, 0.3s) ease;
+}
+
+.navLink:hover,
+.navLinkActive {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md, 1rem);
+}
+
+.notificationBell {
+  position: relative;
+  background: none;
+  border: none;
+  color: white;
+  font-size: var(--font-size-xl, 1.5rem);
+  cursor: pointer;
+  padding: var(--spacing-xs, 0.25rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md, 8px);
+  transition: background-color var(--transition-speed, 0.3s) ease;
+}
+
+.notificationBell:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.notificationCount {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--status-blocked, #ff4d4f);
+  color: white;
+  border-radius: 50%;
+  font-size: var(--font-size-xs, 0.75rem);
+  padding: 0.15rem 0.35rem;
+  min-width: 1rem;
+  text-align: center;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.quickAddButton {
+  background-color: var(--secondary-color, #50C878);
+  color: white;
+  border: none;
+  padding: var(--spacing-xs, 0.25rem);
+  border-radius: var(--border-radius-md, 8px);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl, 1.5rem);
+  transition: background-color var(--transition-speed, 0.3s) ease;
+  width: 36px;
+  height: 36px;
+}
+
+.quickAddButton:hover {
+  background-color: #45b36b;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 300px;
+  background-color: white;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity var(--transition-speed) ease,
+              transform var(--transition-speed) ease,
+              visibility var(--transition-speed) ease;
+}
+
+.dropdownMenuVisible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid #eee;
+}
+
+.dropdownTitle {
+  font-weight: 600;
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.markAllRead {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.notificationList {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.notification {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.notification:hover {
+  background-color: #f5f5f5;
+}
+
+.notificationIcon {
+  font-size: var(--font-size-lg);
+  color: var(--primary-color);
+}
+
+.unreadDot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--status-blocked);
+  border-radius: 50%;
+  margin-top: 6px;
+}
+
+.notificationContent {
+  flex: 1;
+}
+
+.notificationTitle {
+  font-weight: 600;
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.notificationMessage {
+  margin: var(--spacing-xs) 0;
+  color: var(--text-light);
+  font-size: var(--font-size-xs);
+}
+
+.notificationTime {
+  font-size: var(--font-size-xs);
+  color: var(--text-lighter);
+}
+
+.emptyNotifications {
+  padding: var(--spacing-md);
+  text-align: center;
+  color: var(--text-light);
+  font-size: var(--font-size-sm);
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  color: var(--text-light);
+}
+
+/* Mobile menu toggle */
+.mobileMenuToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--primary-color);
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+    display: none;
+    box-shadow: var(--shadow-md);
+  }
+
+  .navLinksVisible {
+    display: flex;
+  }
+
+  .mobileMenuToggle {
+    display: block;
+  }
+
+  .navActions {
+    gap: var(--spacing-sm);
+  }
+}

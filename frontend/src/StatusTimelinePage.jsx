@@ -1,10 +1,8 @@
 import React from 'react';
-import AppHeader from './components/AppHeader';
 import StatusTimeline from './components/StatusTimeline';
 
 const StatusTimelinePage = () => (
-  <div>
-    <AppHeader />
+  <div className="actions-status-page">
     <StatusTimeline />
   </div>
 );

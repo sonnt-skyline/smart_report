@@ -1,0 +1,374 @@
+/* Actions Control Panel Styles */
+
+.actions-control-panel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid #e8e9ea;
+}
+
+/* Header Section */
+.control-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 2rem;
+}
+
+.page-title-section {
+  flex: 1;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2a2a6a;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.2;
+}
+
+.actions-summary-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.total-count {
+  font-weight: 600;
+  color: #3a3a7a;
+}
+
+.filtered-count {
+  color: #666;
+  font-style: italic;
+}
+
+/* Category Legend Compact */
+.category-legend-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+  margin-right: 0.25rem;
+}
+
+.legend-items {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.legend-item {
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.legend-item.delivery {
+  background: #fff;
+  border-color: #ccc;
+}
+
+.legend-item.selfdev {
+  background: #f7f3e8;
+  border-color: #e6d7b8;
+}
+
+.legend-item.solution {
+  background: #f9f9e3;
+  border-color: #e8e8c5;
+}
+
+/* Main Controls */
+.main-controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.control-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.control-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #3a3a7a;
+  white-space: nowrap;
+}
+
+/* Group Buttons Compact */
+.group-buttons-compact {
+  display: flex;
+  gap: 0.25rem;
+  background: #f8f9fa;
+  padding: 0.25rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.group-btn {
+  padding: 0.5rem 0.9rem;
+  border: none;
+  background: transparent;
+  color: #495057;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.group-btn:hover {
+  background: #e9ecef;
+  color: #212529;
+}
+
+.group-btn.active {
+  background: #3a3a7a;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(58, 58, 122, 0.2);
+}
+
+/* Filter Buttons Compact */
+.filter-buttons-compact {
+  display: flex;
+  gap: 0.25rem;
+  background: #f8f9fa;
+  padding: 0.25rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.4rem 0.7rem;
+  border: none;
+  background: transparent;
+  color: #495057;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.filter-btn:hover {
+  background: #e9ecef;
+  color: #212529;
+}
+
+.filter-btn.active {
+  background: #3a3a7a;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(58, 58, 122, 0.2);
+}
+
+.filter-count {
+  font-size: 0.7rem;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 0.1rem 0.4rem;
+  border-radius: 10px;
+  min-width: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+  margin-left: 0.2rem;
+}
+
+.filter-btn:not(.active) .filter-count {
+  background: rgba(0, 0, 0, 0.1);
+  color: #666;
+}
+
+/* Quick Actions */
+.quick-actions {
+  margin-left: auto;
+}
+
+.quick-action-btn {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #dee2e6;
+  background: #fff;
+  color: #495057;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.quick-action-btn:hover {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+  color: #212529;
+}
+
+.quick-action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Advanced Filters */
+.advanced-filters {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.advanced-filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 150px;
+}
+
+.filter-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.filter-select, .filter-input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  background: #fff;
+  color: #495057;
+  transition: border-color 0.2s ease;
+}
+
+.filter-select:focus, .filter-input:focus {
+  outline: none;
+  border-color: #3a3a7a;
+  box-shadow: 0 0 0 2px rgba(58, 58, 122, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .control-panel-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .category-legend-compact {
+    justify-content: center;
+  }
+  
+  .main-controls {
+    gap: 1rem;
+  }
+  
+  .quick-actions {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .actions-control-panel {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .page-title {
+    font-size: 1.3rem;
+  }
+  
+  .main-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .control-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .control-label {
+    font-size: 0.85rem;
+  }
+  
+  .group-buttons-compact,
+  .filter-buttons-compact {
+    justify-content: center;
+  }
+  
+  .filter-buttons-compact {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .filter-buttons-compact::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .advanced-filters {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .advanced-filter-section {
+    min-width: auto;
+  }
+}
+
+/* Focus States for Accessibility */
+.group-btn:focus-visible,
+.filter-btn:focus-visible,
+.quick-action-btn:focus-visible {
+  outline: 2px solid #3a3a7a;
+  outline-offset: 2px;
+}
+
+/* Animation for Advanced Filters */
+.advanced-filters {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
