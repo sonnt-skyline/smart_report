@@ -5,9 +5,9 @@ export const sampleActions = [
     category: 'Delivery',
     subCategory: 'Milestone',
     statusUpdates: [
-      { week: '2025-W22', progress: 10, workStatus: 'Not started' },
-      { week: '2025-W23', progress: 40, workStatus: 'On-going' },
-      { week: '2025-W24', progress: 80, workStatus: 'On-going' },
+      { week: '2025-W34', progress: 10, workStatus: 'Not started' },
+      { week: '2025-W35', progress: 40, workStatus: 'On-going' },
+      { week: '2025-W36', progress: 80, workStatus: 'On-going' },
     ],
     tags: ['urgent', 'client'],
     deadline: '2025-06-08T12:00',
@@ -28,9 +28,9 @@ export const sampleActions = [
     category: 'Self development',
     subCategory: 'Education',
     statusUpdates: [
-      { week: '2025-W23', progress: 0, workStatus: 'Not started' },
-      { week: '2025-W24', progress: 30, workStatus: 'On-going' },
-      { week: '2025-W25', progress: 50, workStatus: 'On-going' },
+      { week: '2025-W35', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W36', progress: 30, workStatus: 'On-going' },
+      { week: '2025-W37', progress: 50, workStatus: 'On-going' },
     ],
     tags: ['learning', 'react'],
     deadline: '2025-06-12T18:00',
@@ -51,8 +51,8 @@ export const sampleActions = [
     category: 'Solution+',
     subCategory: 'Innovation',
     statusUpdates: [
-      { week: '2025-W24', progress: 0, workStatus: 'Not started' },
-      { week: '2025-W25', progress: 20, workStatus: 'On hold' },
+      { week: '2025-W36', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W37', progress: 20, workStatus: 'On hold' },
     ],
     tags: ['proposal', 'solution'],
     deadline: '2025-06-16T10:00',
@@ -73,9 +73,9 @@ export const sampleActions = [
     category: 'Delivery',
     subCategory: 'Reporting',
     statusUpdates: [
-      { week: '2025-W23', progress: 0, workStatus: 'Not started' },
-      { week: '2025-W24', progress: 0, workStatus: 'Not started' },
-      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W35', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W36', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['report', 'weekly'],
     deadline: '2025-06-06T12:00',
@@ -96,8 +96,8 @@ export const sampleActions = [
     category: 'Solution+',
     subCategory: 'Review',
     statusUpdates: [
-      { week: '2025-W23', progress: 0, workStatus: 'Not started' },
-      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W35', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['review', 'solution'],
     deadline: '2025-06-13T10:00',
@@ -118,8 +118,8 @@ export const sampleActions = [
     category: 'Self development',
     subCategory: 'Training',
     statusUpdates: [
-      { week: '2025-W24', progress: 0, workStatus: 'Not started' },
-      { week: '2025-W25', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W36', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['training', 'development'],
     deadline: '2025-06-25T10:00',
@@ -140,9 +140,9 @@ export const sampleActions = [
     category: 'Delivery',
     subCategory: 'Bug Fix',
     statusUpdates: [
-      { week: '2025-W23', progress: 0, workStatus: 'Blocked' },
-      { week: '2025-W24', progress: 30, workStatus: 'Blocked' },
-      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W35', progress: 0, workStatus: 'Blocked' },
+      { week: '2025-W36', progress: 30, workStatus: 'Blocked' },
+      { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['bug', 'urgent'],
     deadline: '2025-06-04T12:00',
@@ -163,8 +163,8 @@ export const sampleActions = [
     category: 'Delivery',
     subCategory: 'Release',
     statusUpdates: [
-      { week: '2025-W24', progress: 0, workStatus: 'Not started' },
-      { week: '2025-W25', progress: 50, workStatus: 'On-going' },
+      { week: '2025-W36', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W37', progress: 50, workStatus: 'On-going' },
     ],
     tags: ['release', 'production'],
     deadline: '2025-06-30T17:00',
@@ -186,7 +186,7 @@ export const sampleActions = [
     category: 'Customer Success',
     subCategory: 'Feedback',
     statusUpdates: [
-      { week: '2025-W25', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['feedback', 'user'],
     deadline: '2025-07-05T12:00',
@@ -208,8 +208,8 @@ export const sampleActions = [
     category: 'Delivery',
     subCategory: 'Bug Fix',
     statusUpdates: [
-      { week: '2025-W24', progress: 20, workStatus: 'On-going' },
-      { week: '2025-W25', progress: 80, workStatus: 'On-going' },
+      { week: '2025-W36', progress: 20, workStatus: 'On-going' },
+      { week: '2025-W37', progress: 80, workStatus: 'On-going' },
     ],
     tags: ['bug', 'critical'],
     deadline: '2025-06-28T18:00',
@@ -231,7 +231,7 @@ export const sampleActions = [
     category: 'Team management',
     subCategory: 'Review',
     statusUpdates: [
-      { week: '2025-W25', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['review', 'performance'],
     deadline: '2025-07-10T12:00',
@@ -253,7 +253,7 @@ export const sampleActions = [
     category: 'Team management',
     subCategory: 'Engagement',
     statusUpdates: [
-      { week: '2025-W25', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['team', 'activity'],
     deadline: '2025-07-15T12:00',
@@ -275,7 +275,7 @@ export const sampleActions = [
     category: 'Team management',
     subCategory: 'Communication',
     statusUpdates: [
-      { week: '2025-W25', progress: 0, workStatus: 'Not started' },
+      { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['one-on-one', 'meetings'],
     deadline: '2025-07-20T12:00',
@@ -297,7 +297,7 @@ export const sampleActions = [
     category: 'Customer Success',
     subCategory: 'Marketing',
     statusUpdates: [
-      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['marketing', 'campaign'],
     deadline: '2025-06-20T12:00',
@@ -319,7 +319,7 @@ export const sampleActions = [
     category: 'Self development',
     subCategory: 'Documentation',
     statusUpdates: [
-      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['documentation'],
     deadline: '2025-07-15T12:00',
@@ -341,7 +341,7 @@ export const sampleActions = [
     category: 'Team management',
     subCategory: 'Engagement',
     statusUpdates: [
-      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['team', 'event'],
     deadline: '2025-07-15T12:00',
@@ -363,7 +363,7 @@ export const sampleActions = [
     category: 'Team management',
     subCategory: 'Review',
     statusUpdates: [
-      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['review', 'performance'],
     deadline: '2025-07-10T12:00',
@@ -385,7 +385,7 @@ export const sampleActions = [
     category: 'Delivery',
     subCategory: 'Bug Fix',
     statusUpdates: [
-      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['bug', 'critical'],
     deadline: '2025-06-28T18:00',
@@ -407,7 +407,7 @@ export const sampleActions = [
     category: 'Customer Success',
     subCategory: 'Onboarding',
     statusUpdates: [
-      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['onboarding'],
     deadline: '2025-06-22T12:00',
@@ -429,7 +429,7 @@ export const sampleActions = [
     category: 'Solution+',
     subCategory: 'Audit',
     statusUpdates: [
-      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['audit'],
     deadline: '2025-06-18T12:00',
@@ -451,7 +451,7 @@ export const sampleActions = [
     category: 'Delivery',
     subCategory: 'Release',
     statusUpdates: [
-      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['release', 'beta'],
     deadline: '2025-07-01T12:00',
@@ -473,7 +473,7 @@ export const sampleActions = [
     category: 'Self development',
     subCategory: 'Training',
     statusUpdates: [
-      { week: '2025-W24', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['training', 'security'],
     deadline: '2025-06-20T12:00',
@@ -495,7 +495,7 @@ export const sampleActions = [
     category: 'Customer Success',
     subCategory: 'Feedback',
     statusUpdates: [
-      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['feedback', 'analysis'],
     deadline: '2025-07-05T12:00',
@@ -517,7 +517,7 @@ export const sampleActions = [
     category: 'Team management',
     subCategory: 'Engagement',
     statusUpdates: [
-      { week: '2025-W25', progress: 100, workStatus: 'Completed' },
+      { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['team', 'knowledge'],
     deadline: '2025-07-15T12:00',

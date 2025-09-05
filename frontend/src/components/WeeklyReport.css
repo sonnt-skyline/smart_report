@@ -59,6 +59,20 @@
   background-color: #f0f7ff;
 }
 
+.weekly-report-action-item.completed {
+  background-color: #f8f9fa;
+  border-color: #34a853;
+}
+
+.weekly-report-action-item.completed .action-title {
+  color: #34a853;
+}
+
+.weekly-report-action-item.completed.selected {
+  background-color: #e6f4ea;
+  border-color: #34a853;
+}
+
 .action-checkbox {
   flex: 0 0 24px;
   display: flex;
@@ -74,6 +88,19 @@
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.completion-badge {
+  background-color: #34a853;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  white-space: nowrap;
 }
 
 .action-meta {
@@ -126,12 +153,21 @@
   color: #b06000;
 }
 
+.quick-btn.ongoing {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+}
+
 .quick-btn.complete:hover {
   background-color: #ceead6;
 }
 
 .quick-btn.hold:hover {
   background-color: #feefc3;
+}
+
+.quick-btn.ongoing:hover {
+  background-color: #d2e3fc;
 }
 
 .quick-btn.active {

@@ -10,18 +10,12 @@ function getCurrentWeek() {
   return `${year}-W${week}`;
 }
 
-export default function WeeklyReportActionList({ actions, selectedActions, onActionToggle }) {
+export default function WeeklyReportActionList({ actions, selectedActions, onActionToggle, onStatusUpdate }) {
   const currentWeek = getCurrentWeek();
-  const [actionStatuses, setActionStatuses] = useState({});
 
   const handleStatusUpdate = (actionId, newStatus) => {
-    setActionStatuses(prev => ({
-      ...prev,
-      [actionId]: newStatus
-    }));
-    
-    // In a real app, this would update the action's status in your data store
-    console.log(`Action ${actionId} updated to ${newStatus}`);
+    // Call the parent component's status update handler
+    onStatusUpdate(actionId, newStatus);
   };
 
   if (!actions.length) return <p>No actions updated this week.</p>;
@@ -34,17 +28,15 @@ export default function WeeklyReportActionList({ actions, selectedActions, onAct
         const workStatus = currentUpdate ? currentUpdate.workStatus : 'Not started';
         const progress = currentUpdate ? currentUpdate.progress : 0;
         
-        // Use the updated status if available, otherwise use the original
-        const displayStatus = actionStatuses[action.id] || workStatus;
-        
         return (
           <div 
             key={action.id} 
-            className={`weekly-report-action-item ${selectedActions.includes(action.id) ? 'selected' : ''}`}
+            className={`weekly-report-action-item ${selectedActions.includes(action.id) ? 'selected' : ''} ${workStatus === 'Completed' ? 'completed' : ''}`}
           >
             <div className="action-checkbox">
               <input 
-                type="checkbox"
+                type="radio"
+                name="selected-action"
                 checked={selectedActions.includes(action.id)}
                 onChange={() => onActionToggle(action.id)}
                 id={`action-check-${action.id}`}
@@ -52,7 +44,12 @@ export default function WeeklyReportActionList({ actions, selectedActions, onAct
             </div>
             
             <div className="action-content">
-              <div className="action-title">{action.title}</div>
+              <div className="action-title">
+                {action.title}
+                {workStatus === 'Completed' && (
+                  <span className="completion-badge">✓ Completed</span>
+                )}
+              </div>
               
               <div className="action-meta">
                 <div className="action-objective">
@@ -73,20 +70,26 @@ export default function WeeklyReportActionList({ actions, selectedActions, onAct
               </div>
               
               <div className="action-status-row">
-                <StatusBadge status={displayStatus} />
+                <StatusBadge status={workStatus} />
                 
                 <div className="action-quick-buttons">
                   <button 
-                    className={`quick-btn complete ${displayStatus === 'Completed' ? 'active' : ''}`}
+                    className={`quick-btn complete ${workStatus === 'Completed' ? 'active' : ''}`}
                     onClick={() => handleStatusUpdate(action.id, 'Completed')}
                   >
                     Complete
                   </button>
                   <button 
-                    className={`quick-btn hold ${displayStatus === 'On hold' ? 'active' : ''}`}
+                    className={`quick-btn hold ${workStatus === 'On hold' ? 'active' : ''}`}
                     onClick={() => handleStatusUpdate(action.id, 'On hold')}
                   >
                     Hold
+                  </button>
+                  <button 
+                    className={`quick-btn ongoing ${workStatus === 'On-going' ? 'active' : ''}`}
+                    onClick={() => handleStatusUpdate(action.id, 'On-going')}
+                  >
+                    Resume
                   </button>
                 </div>
               </div>
