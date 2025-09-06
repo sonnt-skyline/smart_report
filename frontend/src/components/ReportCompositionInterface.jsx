@@ -15,13 +15,20 @@ export default function ReportCompositionInterface({ reportData, onInputChange, 
 
   return (
     <div className="report-composition-interface">
+      <div className="composition-instructions">
+        <p className="instruction-text">
+          <strong>Note:</strong> This composer is independent of action selection. 
+          You can directly input or edit content here, or use AI to generate a summary.
+        </p>
+      </div>
+      
       <div className="report-section">
         <h3>Progress</h3>
-        <p className="hint-text">Auto-filled from selected actions</p>
+        <p className="hint-text">Describe your progress this week</p>
         <textarea
           value={reportData.progress}
           onChange={(e) => onInputChange('progress', e.target.value)}
-          placeholder="Progress details will be auto-filled based on your selected actions"
+          placeholder="Describe what you accomplished this week, key milestones reached, and progress made on your objectives..."
           rows={6}
           className="report-textarea progress-textarea"
         />

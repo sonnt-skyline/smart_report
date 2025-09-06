@@ -11,6 +11,7 @@ export const sampleActions = [
     ],
     tags: ['urgent', 'client'],
     deadline: '2025-06-08T12:00',
+    definitionOfDone: 'All deliverables reviewed and approved by client, documentation updated, and milestone marked complete in project tracker.',
     selfAssessment: {
       status: 'on track',
       text: 'On track, minor risks.'

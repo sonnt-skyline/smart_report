@@ -9,7 +9,7 @@ const STATUS_COLORS = {
   'at risk': '#faad14',
   'off track': '#ff4d4f',
   'completed': '#1890ff',
-  // Legacy status mappings for compatibility
+  // Consistent status mappings
   'On-going': '#52c41a',
   'Blocked': '#ff4d4f',
   'On hold': '#faad14',
@@ -23,10 +23,9 @@ const Badge = styled.span`
   border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 500;
-  text-transform: capitalize;
-  background-color: ${props => STATUS_COLORS[props.status.toLowerCase()] || '#888'};
+  background-color: ${props => STATUS_COLORS[props.status] || '#888'};
   color: ${props =>
-    ['not started', 'Not started'].includes(props.status) ? '#666' : '#fff'
+    ['Not started'].includes(props.status) ? '#666' : '#fff'
   };
 `;
 

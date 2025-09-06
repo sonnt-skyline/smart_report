@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import WeeklyReportActionList from './components/WeeklyReportActionList';
 import ReportCompositionInterface from './components/ReportCompositionInterface';
 import { sampleActions } from './data';
+import './components/WeeklyReport.css';
+import './components/WeeklyReportAdditions.css';
 
 function getCurrentWeek() {
   const now = new Date();
@@ -11,15 +13,23 @@ function getCurrentWeek() {
   return `${year}-W${week}`;
 }
 
+function getPreviousWeek() {
+  const now = new Date();
+  const prevWeek = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const year = prevWeek.getFullYear();
+  const onejan = new Date(year, 0, 1);
+  const week = Math.ceil((((prevWeek - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+  return `${year}-W${week}`;
+}
+
 function WeeklyReportPage() {
   const member = 'Alice'; // This could come from user context in a real app
   const currentWeek = getCurrentWeek();
   const [reportData, setReportData] = useState({
-    progress: '', // Auto-filled from actions
+    progress: '',
     blockers: '',
     nextSteps: '',
   });
-  const [selectedActions, setSelectedActions] = useState([]);
   const [actionsWithUpdates, setActionsWithUpdates] = useState([]);
   const [completedThisSession, setCompletedThisSession] = useState(new Set()); // Track items completed in current session
   const [allActions, setAllActions] = useState([]); // Store all updated actions before filtering
@@ -50,38 +60,7 @@ function WeeklyReportPage() {
     });
 
     setActionsWithUpdates(filteredActions);
-    // Initialize with no selected actions (single selection only)
-    if (selectedActions.length > 0) {
-      // Check if selected action is still in the filtered list
-      const selectedStillAvailable = filteredActions.some(action => action.id === selectedActions[0]);
-      if (!selectedStillAvailable) {
-        setSelectedActions([]);
-      }
-    }
   }, [allActions, completedThisSession, currentWeek]);
-
-  // Generate progress text automatically based on selected actions
-  useEffect(() => {
-    if (selectedActions.length === 0) {
-      setReportData(prev => ({ ...prev, progress: '' }));
-      return;
-    }
-
-    // Generate progress summary for the single selected action
-    const actionId = selectedActions[0]; // Only one action can be selected
-    const action = actionsWithUpdates.find(a => a.id === actionId);
-    if (!action) return;
-
-    const update = action.statusUpdates.find(update => update.week === currentWeek);
-    if (!update) return;
-
-    const progressText = `- ${action.title}: ${update.progress}% complete, status: ${update.workStatus}`;
-
-    setReportData(prev => ({
-      ...prev,
-      progress: progressText
-    }));
-  }, [selectedActions, actionsWithUpdates, currentWeek]);
 
   const handleInputChange = (field, value) => {
     setReportData(prev => ({
@@ -90,19 +69,18 @@ function WeeklyReportPage() {
     }));
   };
 
-  const handleActionToggle = (actionId) => {
-    setSelectedActions(prev => {
-      // Single selection only - if the same action is clicked, deselect it
-      if (prev.includes(actionId)) {
-        return [];
-      } else {
-        // Replace current selection with the new one
-        return [actionId];
-      }
-    });
-  };
-
-  const handleStatusUpdate = (actionId, newStatus) => {
+  const handleStatusUpdate = (actionId, newStatus, newProgress = null) => {
+    // Apply progress constraints based on status
+    let finalProgress = newProgress;
+    
+    if (newStatus === 'Completed') {
+      finalProgress = 100;
+    } else if (newStatus === 'Not started') {
+      finalProgress = 0;
+    } else if (newStatus === 'On-going' && finalProgress !== null) {
+      finalProgress = Math.max(1, Math.min(99, finalProgress));
+    }
+    
     // Update the action status in the all actions state
     setAllActions(prev =>
       prev.map(action => {
@@ -110,24 +88,28 @@ function WeeklyReportPage() {
           // Update the status for the current week
           const updatedStatusUpdates = action.statusUpdates.map(update =>
             update.week === currentWeek
-              ? { ...update, workStatus: newStatus }
+              ? { 
+                  ...update, 
+                  workStatus: newStatus,
+                  progress: finalProgress !== null ? finalProgress : (newStatus === 'Completed' ? 100 : update.progress)
+                }
               : update
           );
 
           // If no status update exists for current week, add one
           const hasCurrentWeekUpdate = action.statusUpdates.some(update => update.week === currentWeek);
           if (!hasCurrentWeekUpdate) {
+            let defaultProgress = 0;
+            if (newStatus === 'Completed') {
+              defaultProgress = 100;
+            } else if (newStatus === 'On-going') {
+              defaultProgress = finalProgress !== null ? finalProgress : 1;
+            }
+            
             updatedStatusUpdates.push({
               week: currentWeek,
-              progress: newStatus === 'Completed' ? 100 : 0,
+              progress: defaultProgress,
               workStatus: newStatus
-            });
-          } else {
-            // Update progress to 100% if completed
-            updatedStatusUpdates.forEach(update => {
-              if (update.week === currentWeek && newStatus === 'Completed') {
-                update.progress = 100;
-              }
             });
           }
 
@@ -147,29 +129,115 @@ function WeeklyReportPage() {
     }
   };
 
+  const handleAddNewAction = (newAction) => {
+    setAllActions(prev => [...prev, newAction]);
+  };
+
+  const handleRevertAction = (actionId) => {
+    // Revert action to previous week's state
+    const previousWeek = getPreviousWeek();
+    
+    setAllActions(prev =>
+      prev.map(action => {
+        if (action.id === actionId) {
+          const previousUpdate = action.statusUpdates.find(update => update.week === previousWeek);
+          
+          if (previousUpdate) {
+            // Remove current week's update and revert to previous week's state
+            const updatedStatusUpdates = action.statusUpdates.filter(update => update.week !== currentWeek);
+            
+            return {
+              ...action,
+              statusUpdates: updatedStatusUpdates
+            };
+          } else {
+            // If no previous update exists, set to 'Not started' with 0 progress
+            const updatedStatusUpdates = action.statusUpdates.map(update =>
+              update.week === currentWeek
+                ? { ...update, progress: 0, workStatus: 'Not started' }
+                : update
+            );
+            
+            return {
+              ...action,
+              statusUpdates: updatedStatusUpdates
+            };
+          }
+        }
+        return action;
+      })
+    );
+
+    // Remove from completed this session if it was there
+    setCompletedThisSession(prev => {
+      const newSet = new Set(prev);
+      newSet.delete(actionId);
+      return newSet;
+    });
+  };
+
   const generateAISummary = () => {
-    // In a real app, this would call an API with the selected action
-    // For now, we'll simulate a simple AI summary
-    if (selectedActions.length === 0) {
+    // Generate AI summary based on all current actions regardless of selection
+    const activeActions = actionsWithUpdates.filter(action => {
+      const currentUpdate = action.statusUpdates.find(update => update.week === currentWeek);
+      return currentUpdate && currentUpdate.workStatus !== 'Not started';
+    });
+
+    if (activeActions.length === 0) {
       const aiSummary = {
-        progress: "No actions selected for this week's report.",
-        blockers: "Please select an action to generate AI summary.",
-        nextSteps: "Select an ongoing action from the list to include in your weekly report."
+        progress: "No active actions this week. Focus on planning and setting up objectives for the coming period.",
+        blockers: "No specific blockers identified. Consider reviewing objectives and action items for the upcoming work.",
+        nextSteps: "Review and plan new actions and objectives. Set up concrete deliverables for the next week."
       };
       setReportData(aiSummary);
       return;
     }
 
-    const selectedAction = actionsWithUpdates.find(a => a.id === selectedActions[0]);
-    if (!selectedAction) return;
+    // Generate summary based on all active actions
+    const completedActions = activeActions.filter(action => {
+      const currentUpdate = action.statusUpdates.find(update => update.week === currentWeek);
+      return currentUpdate && currentUpdate.workStatus === 'Completed';
+    });
 
-    const currentUpdate = selectedAction.statusUpdates.find(update => update.week === currentWeek);
-    const isCompletedThisSession = completedThisSession.has(selectedAction.id);
+    const ongoingActions = activeActions.filter(action => {
+      const currentUpdate = action.statusUpdates.find(update => update.week === currentWeek);
+      return currentUpdate && currentUpdate.workStatus === 'On-going';
+    });
+
+    const blockedActions = activeActions.filter(action => {
+      const currentUpdate = action.statusUpdates.find(update => update.week === currentWeek);
+      return currentUpdate && (currentUpdate.workStatus === 'On hold' || currentUpdate.workStatus === 'Blocked');
+    });
+
+    let progressText = "This week's accomplishments:\n";
+    if (completedActions.length > 0) {
+      progressText += completedActions.map(action => `• Completed "${action.title}"`).join('\n') + '\n';
+    }
+    if (ongoingActions.length > 0) {
+      progressText += ongoingActions.map(action => {
+        const currentUpdate = action.statusUpdates.find(update => update.week === currentWeek);
+        return `• Progressed on "${action.title}" (${currentUpdate?.progress || 0}% complete)`;
+      }).join('\n');
+    }
+
+    let blockersText = "No major blockers identified this week.";
+    if (blockedActions.length > 0) {
+      blockersText = "Current blockers:\n" + 
+        blockedActions.map(action => `• "${action.title}" is ${action.statusUpdates.find(update => update.week === currentWeek)?.workStatus || 'blocked'}`).join('\n');
+    }
+
+    let nextStepsText = "Planned for next week:\n";
+    if (ongoingActions.length > 0) {
+      nextStepsText += ongoingActions.map(action => `• Continue work on "${action.title}"`).join('\n');
+    }
+    if (completedActions.length > 0) {
+      nextStepsText += "\n• Focus on next priorities and objectives";
+    }
 
     const aiSummary = {
-      progress: `Worked on "${selectedAction.title}" this week. Current progress: ${currentUpdate?.progress || 0}% complete with status: ${currentUpdate?.workStatus || 'Not started'}. ${isCompletedThisSession ? 'Successfully completed during this reporting period! ' : ''}This contributes to the objective: ${selectedAction.parentObjective}.`,
-      blockers: currentUpdate?.workStatus === 'On hold' ? "Task is currently on hold. Need to identify and resolve blocking issues." : isCompletedThisSession ? "No blockers - task successfully completed this week!" : "No major blockers identified this week.",
-      nextSteps: isCompletedThisSession ? `Task "${selectedAction.title}" is complete. Focus on next priorities and objectives.` : currentUpdate?.workStatus === 'On-going' ? `Continue working on "${selectedAction.title}" to reach completion. Focus on addressing any remaining requirements.` : `Resume work on "${selectedAction.title}" and identify next actionable steps.`
+      progress: progressText,
+      blockers: blockersText,
+      nextSteps: nextStepsText
     };
 
     setReportData(aiSummary);
@@ -185,9 +253,9 @@ function WeeklyReportPage() {
           <h2>This Week's Actions</h2>
           <WeeklyReportActionList
             actions={actionsWithUpdates}
-            selectedActions={selectedActions}
-            onActionToggle={handleActionToggle}
             onStatusUpdate={handleStatusUpdate}
+            onAddAction={handleAddNewAction}
+            onRevertAction={handleRevertAction}
           />
         </div>
 
