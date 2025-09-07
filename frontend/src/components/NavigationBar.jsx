@@ -3,57 +3,42 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FiBell, FiPlusCircle, FiMenu, FiX, FiCheck, FiAlertCircle, FiInfo } from 'react-icons/fi';
 import styles from './NavigationBar.module.css'; // Make sure this import is working
 import logo from '../assets/react.svg';
-import { useUser, USER_ROLES } from '../context/UserContext';
-import apiService from '../services/apiService';
 
 const NavigationBar = () => {
-  const { userRole, isManager, isMember } = useUser();
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showQuickAddModal, setShowQuickAddModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const notificationRef = useRef(null);
   const location = useLocation();
 
   // Menu items based on role
   const getMenuItems = () => {
     const commonItems = [
-      { to: '/', label: 'Overview' },
       { to: '/actions', label: 'Actions' },
-      { to: '/status-timeline', label: 'Timeline' },
       { to: '/weekly-report', label: 'Weekly Report' }
     ];
     
-    // Manager-specific items
-    if (isManager) {
-      return [
-        ...commonItems,
-        { to: '/dashboard', label: 'Dashboard' },
-        { to: '/member-ranking', label: 'Rankings' },
-        { to: '/summary', label: 'Summary' }
-      ];
-    }
-    
+    // For initial deployment, only show Actions and Weekly Report
     return commonItems;
   };
   
   // Fetch notifications
   useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        setIsLoading(true);
-        const response = await apiService.notifications.getAll();
-        setNotifications(response.data);
-        const unread = response.data.filter(notification => !notification.read).length;
-        setUnreadCount(unread);
-      } catch (error) {
-        console.error('Failed to fetch notifications:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    // const fetchNotifications = async () => {
+    //   try {
+    //     setIsLoading(true);
+    //     const response = await apiService.notifications.getAll();
+    //     setNotifications(response.data);
+    //     const unread = response.data.filter(notification => !notification.read).length;
+    //     setUnreadCount(unread);
+    //   } catch (error) {
+    //     console.error('Failed to fetch notifications:', error);
+    //   } finally {
+    //     setIsLoading(false);
+    //   }
+    // };
     
     // Mock data for demonstration
     const mockNotifications = [
@@ -246,7 +231,7 @@ const NavigationBar = () => {
               <div className={styles.notificationList}>
                 {notifications.length === 0 ? (
                   <div className={styles.emptyNotifications}>
-                    {isLoading ? 'Loading...' : 'No notifications'}
+                    No notifications
                   </div>
                 ) : (
                   notifications.map(notification => (

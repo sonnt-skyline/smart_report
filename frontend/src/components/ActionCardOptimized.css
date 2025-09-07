@@ -418,11 +418,17 @@
   margin-bottom: 2rem;
 }
 
+.action-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
 .view-mode-controls {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1rem;
-  justify-content: flex-end;
 }
 
 .view-mode-btn {
@@ -451,10 +457,8 @@
 
 .actions-summary {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-  padding: 0 0.25rem;
+  gap: 0.5rem;
 }
 
 .actions-count {

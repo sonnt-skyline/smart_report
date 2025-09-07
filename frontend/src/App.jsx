@@ -10,14 +10,8 @@ import ActionsControlPanel from './components/ActionsControlPanel';
 import NavigationBar from './components/NavigationBar';
 import { ACTION_CATEGORIES, GROUP_OPTIONS } from './constants';
 import { sampleActions } from './data';
-import StatusTimelinePage from './StatusTimelinePage';
-import OverviewPage from './OverviewPage';
-import Dashboard from './Dashboard';
-import ObjectivesPage from './ObjectivesPage';
 import WeeklyReportPage from './WeeklyReportPage';
-import MemberRankingPage from './MemberRankingPage';
-import SummaryPage from './SummaryPage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 function getLatestWorkStatus(action) {
   // Find the latest status update for the current week or before
@@ -40,7 +34,6 @@ function App() {
   const [groupBy, setGroupBy] = useState('category');
   const [filter, setFilter] = useState('All');
   const [isFiltering, setIsFiltering] = useState(false);
-  const notes = 'This week: Focus on emergency escalation and team alert features.';
 
   // Filter actions by member first
   const memberActions = sampleActions.filter(a => a.member === member);
@@ -112,7 +105,8 @@ function App() {
       <NavigationBar />
       <div className="app-content">
         <Routes>
-          <Route path="/" element={<OverviewPage />} />
+          {/* Redirect root path to actions page */}
+          <Route path="/" element={<Navigate to="/actions" replace />} />
           <Route path="/actions" element={
             <div className="actions-status-page">
               <ActionsControlPanel 
@@ -184,12 +178,7 @@ function App() {
               </div>
             </div>
           } />
-          <Route path="/status-timeline" element={<StatusTimelinePage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/objectives" element={<ObjectivesPage />} />
           <Route path="/weekly-report" element={<WeeklyReportPage />} />
-          <Route path="/member-ranking" element={<MemberRankingPage />} />
-          <Route path="/summary" element={<SummaryPage />} />
         </Routes>
       </div>
     </Router>

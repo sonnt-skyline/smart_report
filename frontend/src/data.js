@@ -10,7 +10,7 @@ export const sampleActions = [
       { week: '2025-W36', progress: 80, workStatus: 'On-going' },
     ],
     tags: ['urgent', 'client'],
-    deadline: '2025-06-08T12:00',
+    deadline: '2025-09-08T12:00',
     definitionOfDone: 'All deliverables reviewed and approved by client, documentation updated, and milestone marked complete in project tracker.',
     selfAssessment: {
       status: 'on track',
@@ -34,7 +34,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 50, workStatus: 'On-going' },
     ],
     tags: ['learning', 'react'],
-    deadline: '2025-06-12T18:00',
+    deadline: '2025-09-12T18:00',
     selfAssessment: {
       status: 'on track',
       text: 'Halfway done.'
@@ -56,7 +56,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 20, workStatus: 'On hold' },
     ],
     tags: ['proposal', 'solution'],
-    deadline: '2025-06-16T10:00',
+    deadline: '2025-09-16T10:00',
     selfAssessment: {
       status: 'not started',
       text: 'Initial research started.'
@@ -79,7 +79,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['report', 'weekly'],
-    deadline: '2025-06-06T12:00',
+    deadline: '2025-09-06T12:00',
     selfAssessment: {
       status: 'not started',
       text: 'Will start soon.'
@@ -101,7 +101,7 @@ export const sampleActions = [
       { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['review', 'solution'],
-    deadline: '2025-06-13T10:00',
+    deadline: '2025-09-13T10:00',
     selfAssessment: {
       status: 'on track',
       text: 'Completed successfully.'
@@ -123,7 +123,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['training', 'development'],
-    deadline: '2025-06-25T10:00',
+    deadline: '2025-09-25T10:00',
     selfAssessment: {
       status: 'not started',
       text: 'Not started yet.'
@@ -146,7 +146,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['bug', 'urgent'],
-    deadline: '2025-06-04T12:00',
+    deadline: '2025-09-04T12:00',
     selfAssessment: {
       status: 'off track',
       text: 'Blocked by missing info.'
@@ -168,7 +168,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 50, workStatus: 'On-going' },
     ],
     tags: ['release', 'production'],
-    deadline: '2025-06-30T17:00',
+    deadline: '2025-09-30T17:00',
     selfAssessment: {
       status: 'on track',
       text: 'Release preparation in progress.'
@@ -190,7 +190,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['feedback', 'user'],
-    deadline: '2025-07-05T12:00',
+    deadline: '2025-09-05T12:00',
     selfAssessment: {
       status: 'not started',
       text: 'Feedback survey drafted.'
@@ -213,7 +213,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 80, workStatus: 'On-going' },
     ],
     tags: ['bug', 'critical'],
-    deadline: '2025-06-28T18:00',
+    deadline: '2025-09-28T18:00',
     selfAssessment: {
       status: 'on track',
       text: 'Most critical bugs fixed.'
@@ -235,7 +235,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['review', 'performance'],
-    deadline: '2025-07-10T12:00',
+    deadline: '2025-09-10T12:00',
     selfAssessment: {
       status: 'not started',
       text: 'Review criteria defined.'
@@ -257,7 +257,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['team', 'activity'],
-    deadline: '2025-07-15T12:00',
+    deadline: '2025-09-15T12:00',
     selfAssessment: {
       status: 'not started',
       text: 'Activity ideas brainstormed.'
@@ -279,7 +279,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 0, workStatus: 'Not started' },
     ],
     tags: ['one-on-one', 'meetings'],
-    deadline: '2025-07-20T12:00',
+    deadline: '2025-09-20T12:00',
     selfAssessment: {
       status: 'not started',
       text: 'Meeting agenda templates created.'
@@ -301,7 +301,7 @@ export const sampleActions = [
       { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['marketing', 'campaign'],
-    deadline: '2025-06-20T12:00',
+    deadline: '2025-09-20T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'Campaign launched successfully.'
@@ -323,7 +323,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['documentation'],
-    deadline: '2025-07-15T12:00',
+    deadline: '2025-09-15T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'Documentation improved.'
@@ -345,7 +345,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['team', 'event'],
-    deadline: '2025-07-15T12:00',
+    deadline: '2025-09-15T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'Event held successfully.'
@@ -367,7 +367,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['review', 'performance'],
-    deadline: '2025-07-10T12:00',
+    deadline: '2025-09-10T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'All reviews completed.'
@@ -389,7 +389,7 @@ export const sampleActions = [
       { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['bug', 'critical'],
-    deadline: '2025-06-28T18:00',
+    deadline: '2025-09-28T18:00',
     selfAssessment: {
       status: 'on track',
       text: 'Bug fixed before deadline.'
@@ -411,7 +411,7 @@ export const sampleActions = [
       { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['onboarding'],
-    deadline: '2025-06-22T12:00',
+    deadline: '2025-09-22T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'Onboarding completed.'
@@ -433,7 +433,7 @@ export const sampleActions = [
       { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['audit'],
-    deadline: '2025-06-18T12:00',
+    deadline: '2025-09-18T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'Audit finished.'
@@ -455,7 +455,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['release', 'beta'],
-    deadline: '2025-07-01T12:00',
+    deadline: '2025-09-01T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'Beta released.'
@@ -477,7 +477,7 @@ export const sampleActions = [
       { week: '2025-W36', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['training', 'security'],
-    deadline: '2025-06-20T12:00',
+    deadline: '2025-09-20T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'Training completed.'
@@ -499,7 +499,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['feedback', 'analysis'],
-    deadline: '2025-07-05T12:00',
+    deadline: '2025-09-05T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'Analysis complete.'
@@ -521,7 +521,7 @@ export const sampleActions = [
       { week: '2025-W37', progress: 100, workStatus: 'Completed' },
     ],
     tags: ['team', 'knowledge'],
-    deadline: '2025-07-15T12:00',
+    deadline: '2025-09-15T12:00',
     selfAssessment: {
       status: 'on track',
       text: 'Session held.'
@@ -540,7 +540,7 @@ export const sampleObjectives = [
   {
     name: 'Client satisfaction and project progress',
     valueDescription: 'Delivering milestones and maintaining client trust through timely project progress.',
-    deadline: '2025-06-30',
+    deadline: '2025-09-30',
     parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
     keyResult: [
       'Milestone 1 delivered',
@@ -552,7 +552,7 @@ export const sampleObjectives = [
   {
     name: 'React skills for future projects',
     valueDescription: 'Upskill team members in React to enable future project success.',
-    deadline: '2025-06-20',
+    deadline: '2025-09-20',
     parentObjective: 'Objective: Enhance team performance and development',
     keyResult: [
       'React course completed',
@@ -564,7 +564,7 @@ export const sampleObjectives = [
   {
     name: 'Potential for innovative solutions',
     valueDescription: 'Encourage and implement innovative solutions to improve processes.',
-    deadline: '2025-07-10',
+    deadline: '2025-09-10',
     parentObjective: 'Objective: Enhance team performance and development',
     keyResult: [
       'New solution proposal accepted by team'
@@ -575,7 +575,7 @@ export const sampleObjectives = [
   {
     name: 'Keeps team and stakeholders informed',
     valueDescription: 'Ensure all stakeholders are updated on progress and issues.',
-    deadline: '2025-06-10',
+    deadline: '2025-09-10',
     parentObjective: 'Objective: Enhance team performance and development',
     keyResult: [
       'Weekly reports submitted on time'
@@ -586,7 +586,7 @@ export const sampleObjectives = [
   {
     name: 'Ensures solution quality and team alignment',
     valueDescription: 'Maintain high quality standards and team consensus on solutions.',
-    deadline: '2025-06-15',
+    deadline: '2025-09-15',
     parentObjective: 'Objective: Enhance team performance and development',
     keyResult: [
       'All solutions reviewed',
@@ -598,7 +598,7 @@ export const sampleObjectives = [
   {
     name: 'Upskilling for future responsibilities',
     valueDescription: 'Prepare team members for upcoming roles and challenges.',
-    deadline: '2025-07-01',
+    deadline: '2025-09-01',
     parentObjective: 'Objective: Enhance team performance and development',
     keyResult: [
       'Training completed',
@@ -610,7 +610,7 @@ export const sampleObjectives = [
   {
     name: 'Restores deployment pipeline and reliability',
     valueDescription: 'Fix deployment issues to ensure reliable releases.',
-    deadline: '2025-06-05',
+    deadline: '2025-09-05',
     parentObjective: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
     keyResult: [
       'Deployment bug fixed',
@@ -622,7 +622,7 @@ export const sampleObjectives = [
   {
     name: 'Objective: Improve customer satisfaction by delivering high-quality features on time',
     valueDescription: 'Deliver features that meet customer needs and timelines.',
-    deadline: '2025-07-10',
+    deadline: '2025-09-10',
     parentObjective: '',
     keyResult: [
       'v2.0 released',
@@ -634,7 +634,7 @@ export const sampleObjectives = [
   {
     name: 'Objective: Enhance team performance and development',
     valueDescription: 'Foster a high-performing and continuously developing team.',
-    deadline: '2025-07-31',
+    deadline: '2025-09-31',
     parentObjective: '',
     keyResult: [
       'Performance reviews completed',
@@ -647,7 +647,7 @@ export const sampleObjectives = [
   {
     name: 'Expand market reach',
     valueDescription: 'Grow the user base by targeting new market segments.',
-    deadline: '2025-08-31',
+    deadline: '2025-09-31',
     parentObjective: '',
     keyResult: [
       '10% increase in new users'
@@ -658,7 +658,7 @@ export const sampleObjectives = [
   {
     name: 'Improve internal documentation',
     valueDescription: 'Ensure all processes and code are well documented for future maintainability.',
-    deadline: '2025-07-15',
+    deadline: '2025-09-15',
     parentObjective: 'Objective: Enhance team performance and development',
     keyResult: [
       'Documentation coverage reaches 95%'
