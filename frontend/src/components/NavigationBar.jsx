@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { FiBell, FiPlusCircle, FiMenu, FiX, FiCheck, FiAlertCircle, FiInfo } from 'react-icons/fi';
+import { FiBell, FiPlusCircle, FiMenu, FiX, FiCheck, FiAlertCircle, FiInfo, FiLogOut, FiUser } from 'react-icons/fi';
 import styles from './NavigationBar.module.css'; // Make sure this import is working
 import logo from '../assets/react.svg';
 
-const NavigationBar = () => {
+const NavigationBar = ({ currentUser, onLogout }) => {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -268,6 +268,29 @@ const NavigationBar = () => {
           >
             <FiPlusCircle />
           </button>
+
+          {/* User Profile Menu */}
+          <div className={styles.userMenu}>
+            <div className={styles.userProfile}>
+              <div className={styles.userInfo}>
+                <span className={styles.userName}>
+                  {currentUser?.name || 'User'}
+                </span>
+                <span className={styles.userEmail}>
+                  {currentUser?.email}
+                </span>
+              </div>
+              <FiUser className={styles.userIcon} />
+            </div>
+            <button 
+              className={styles.logoutButton}
+              onClick={onLogout}
+              aria-label="Logout"
+              title="Logout"
+            >
+              <FiLogOut />
+            </button>
+          </div>
         </div>
       </div>
       

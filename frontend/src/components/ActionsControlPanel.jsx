@@ -23,6 +23,26 @@ export default function ActionsControlPanel({
     return filterType === 'All' ? totalActions : '';
   };
 
+  // Determine CSS class for filtered count based on filter type and count
+  const getFilteredCountClass = (filterType, count) => {
+    // No special styling for zero counts in the main display
+    if (count > 0) {
+      if (filterType === 'Blocked') return 'has-blocked';
+      if (filterType === 'On hold') return 'has-on-hold';
+    }
+    return '';
+  };
+
+  // Determine CSS class for filter count badges
+  const getFilterCountClass = (filterType, count) => {
+    // Only highlight non-zero problematic statuses
+    if (count > 0) {
+      if (filterType === 'Blocked') return 'blocked-count';
+      if (filterType === 'On hold') return 'hold-count';
+    }
+    return '';
+  };
+
   return (
     <div className="actions-control-panel">
       {/* Header with Title and Summary */}
@@ -32,7 +52,9 @@ export default function ActionsControlPanel({
           <div className="actions-summary-compact">
             <span className="total-count">{totalActions} total actions</span>
             {filter !== 'All' && (
-              <span className="filtered-count">• {filteredActions} {filter.toLowerCase()}</span>
+              <span className={`filtered-count ${getFilteredCountClass(filter, filteredActions)}`}>
+                • {filteredActions} {filter.toLowerCase()}
+              </span>
             )}
           </div>
         </div>
@@ -79,8 +101,8 @@ export default function ActionsControlPanel({
               >
                 {f}
                 {/* Show count for each filter */}
-                {getDisplayCount(f) && (
-                  <span className="filter-count">
+                {getDisplayCount(f) !== undefined && getDisplayCount(f) !== '' && (
+                  <span className={`filter-count ${getFilterCountClass(f, getDisplayCount(f))}`}>
                     {getDisplayCount(f)}
                   </span>
                 )}

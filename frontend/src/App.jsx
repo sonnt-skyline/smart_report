@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import './styles/theme.module.css'; // Import theme variables
 import NotesSection from './components/NotesSection';
@@ -8,8 +8,9 @@ import GroupButtons from './components/GroupButtons';
 import ActionCardList from './components/ActionCardList';
 import ActionsControlPanel from './components/ActionsControlPanel';
 import NavigationBar from './components/NavigationBar';
+import LoginPage from './components/LoginPage';
 import { ACTION_CATEGORIES, GROUP_OPTIONS } from './constants';
-import { sampleActions } from './data';
+import { weeklyReportAPI, authAPI } from './utils/api';
 import WeeklyReportPage from './WeeklyReportPage';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -30,13 +31,70 @@ function getLatestWorkStatus(action) {
 }
 
 function App() {
-  const member = 'Alice';
   const [groupBy, setGroupBy] = useState('category');
   const [filter, setFilter] = useState('All');
   const [isFiltering, setIsFiltering] = useState(false);
+  const [memberActions, setMemberActions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  // Filter actions by member first
-  const memberActions = sampleActions.filter(a => a.member === member);
+  // Check authentication on app load
+  useEffect(() => {
+    const checkAuth = () => {
+      if (authAPI.isAuthenticated()) {
+        const user = authAPI.getCurrentUser();
+        setCurrentUser(user);
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+      setLoading(false);
+    };
+
+    checkAuth();
+  }, []);
+
+  // Load user actions from API when authenticated
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setMemberActions([]);
+      return;
+    }
+    
+    const loadActions = async () => {
+      try {
+        setLoading(true);
+        const actions = await weeklyReportAPI.getUserActions();
+        setMemberActions(actions);
+      } catch (error) {
+        console.error('Failed to load actions:', error);
+        setMemberActions([]);
+        // If auth token is invalid, logout
+        if (error.message.includes('401') || error.message.includes('unauthorized')) {
+          handleLogout();
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadActions();
+  }, [isAuthenticated]);
+
+  const handleLoginSuccess = (user) => {
+    console.log('🎉 App.jsx: handleLoginSuccess called with user:', user);
+    setCurrentUser(user);
+    setIsAuthenticated(true);
+    console.log('✅ App.jsx: Authentication state updated');
+  };
+
+  const handleLogout = () => {
+    authAPI.logout();
+    setCurrentUser(null);
+    setIsAuthenticated(false);
+    setMemberActions([]);
+  };
   
   // Handle filter changes with loading state
   const handleFilterChange = (newFilter) => {
@@ -100,9 +158,29 @@ function App() {
   const actionCounts = getActionCountsByStatus();
   const filteredActions = actionCounts[filter] || 0;
 
+  // Show loading screen while checking authentication
+  if (loading) {
+    return (
+      <div className="app-content">
+        <div className="loading-container" style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.3 }}>⏳</div>
+            <h3>Loading...</h3>
+            <p>Please wait while we load the application.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!isAuthenticated) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
   return (
     <Router>
-      <NavigationBar />
+      <NavigationBar currentUser={currentUser} onLogout={handleLogout} />
       <div className="app-content">
         <Routes>
           {/* Redirect root path to actions page */}
@@ -120,7 +198,13 @@ function App() {
               />
               
               <div className={`actions-groups-container ${isFiltering ? 'filter-transition' : ''}`}>
-                {(() => {
+                {loading ? (
+                  <div className="loading-container">
+                    <div style={{ fontSize: '3rem', marginBottom: '1rem', opacity: 0.3 }}>⏳</div>
+                    <h3>Loading actions...</h3>
+                    <p>Please wait while we fetch your actions.</p>
+                  </div>
+                ) : (() => {
                   // First, filter groups to only include those with matching actions
                   const visibleGroups = groups.filter(group => {
                     const groupFilteredActions = group.actions.filter(a => filter === 'All' || getLatestWorkStatus(a) === filter);

@@ -118,14 +118,14 @@ export default function ActionCardOptimized({ action, variant = 'detailed' }) {
           {/* Assessments */}
           <div className="assessment-row">
             <span className="assessment-label">Self:</span>
-            <span style={{ color: STATUS_COLORS[action.selfAssessment.status] }}>
-              {action.selfAssessment.text}
+            <span style={{ color: STATUS_COLORS[action.selfAssessment?.status] || '#888' }}>
+              {action.selfAssessment?.text || 'No assessment'}
             </span>
           </div>
           <div className="assessment-row">
             <span className="assessment-label">AI:</span>
-            <span style={{ color: STATUS_COLORS[action.aiAssessment.status] }}>
-              {action.aiAssessment.text}
+            <span style={{ color: STATUS_COLORS[action.aiAssessment?.status] || '#888' }}>
+              {action.aiAssessment?.text || 'No assessment'}
             </span>
           </div>
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import WeeklyReportActionList from './components/WeeklyReportActionList';
 import ReportCompositionInterface from './components/ReportCompositionInterface';
-import { sampleActions } from './data';
+import { weeklyReportAPI } from './utils/api';
 import './components/WeeklyReport.css';
 import './components/WeeklyReportAdditions.css';
 
@@ -23,7 +23,6 @@ function getPreviousWeek() {
 }
 
 function WeeklyReportPage() {
-  const member = 'Alice'; // This could come from user context in a real app
   const currentWeek = getCurrentWeek();
   const [reportData, setReportData] = useState({
     progress: '',
@@ -31,36 +30,46 @@ function WeeklyReportPage() {
     nextSteps: '',
   });
   const [actionsWithUpdates, setActionsWithUpdates] = useState([]);
-  const [completedThisSession, setCompletedThisSession] = useState(new Set()); // Track items completed in current session
   const [allActions, setAllActions] = useState([]); // Store all updated actions before filtering
 
   // Load initial actions for the current user
   useEffect(() => {
-    // Filter actions for this member
-    const memberActions = sampleActions.filter(action => action.member === member);
+    const loadUserActions = async () => {
+      try {
+        // Get actions from backend API
+        const actions = await weeklyReportAPI.getUserActions();
 
-    // For a real app, you'd want to track which actions were updated this week
-    const updatedActions = memberActions.filter(action => {
-      return action.statusUpdates.some(update => update.week === currentWeek);
-    });
+        // Set all actions - let the completion filter handle the filtering
+        setAllActions(actions);
+      } catch (error) {
+        console.error('Failed to load user actions:', error);
+        // Set empty array on error to prevent app crashes
+        setAllActions([]);
+      }
+    };
 
-    setAllActions(updatedActions);
-  }, [member, currentWeek]);
+    loadUserActions();
+  }, [currentWeek]);
 
   // Filter actions based on completion status
   useEffect(() => {
-    // Filter out completed actions that were NOT completed in this session
-    // Keep actions that are either not completed OR were completed during this session
-    const filteredActions = allActions.filter(action => {
+    // Show only incomplete actions (exclude completed actions)
+    const incompleteActions = allActions.filter(action => {
       const currentUpdate = action.statusUpdates.find(update => update.week === currentWeek);
-      const isCompleted = currentUpdate && currentUpdate.workStatus === 'Completed';
+      
+      // If no update exists for current week, consider it incomplete (should be shown)
+      if (!currentUpdate) {
+        return true;
+      }
+      
+      const isCompleted = currentUpdate.workStatus === 'Completed';
 
-      // Keep if not completed OR completed in this session
-      return !isCompleted || completedThisSession.has(action.id);
+      // Only show actions that are not completed
+      return !isCompleted;
     });
 
-    setActionsWithUpdates(filteredActions);
-  }, [allActions, completedThisSession, currentWeek]);
+    setActionsWithUpdates(incompleteActions);
+  }, [allActions, currentWeek]);
 
   const handleInputChange = (field, value) => {
     setReportData(prev => ({
@@ -122,11 +131,7 @@ function WeeklyReportPage() {
       })
     );
 
-    // If the status is updated to 'Completed', track it in this session
-    // but don't remove it from the current report
-    if (newStatus === 'Completed') {
-      setCompletedThisSession(prev => new Set([...prev, actionId]));
-    }
+    // Note: Actions are automatically filtered to show only incomplete ones
   };
 
   const handleAddNewAction = (newAction) => {
@@ -167,13 +172,6 @@ function WeeklyReportPage() {
         return action;
       })
     );
-
-    // Remove from completed this session if it was there
-    setCompletedThisSession(prev => {
-      const newSet = new Set(prev);
-      newSet.delete(actionId);
-      return newSet;
-    });
   };
 
   const generateAISummary = () => {

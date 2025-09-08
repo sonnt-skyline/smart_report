@@ -329,3 +329,90 @@
     gap: var(--spacing-sm);
   }
 }
+
+/* User Menu Styles */
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  margin-left: var(--spacing-md, 1rem);
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 0.5rem);
+  padding: var(--spacing-xs, 0.25rem) var(--spacing-sm, 0.5rem);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.userName {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.userEmail {
+  font-size: var(--font-size-xs, 0.75rem);
+  opacity: 0.8;
+  line-height: 1;
+}
+
+.userIcon {
+  font-size: var(--font-size-lg, 1.125rem);
+  opacity: 0.9;
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: var(--font-size-md, 1rem);
+}
+
+.logoutButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.logoutButton:active {
+  transform: translateY(0);
+}
+
+/* Mobile adjustments for user menu */
+@media (max-width: 768px) {
+  .userInfo {
+    display: none;
+  }
+  
+  .userMenu {
+    margin-left: var(--spacing-sm, 0.5rem);
+    gap: var(--spacing-xs, 0.25rem);
+  }
+  
+  .userProfile {
+    padding: var(--spacing-xs, 0.25rem);
+  }
+  
+  .logoutButton {
+    width: 36px;
+    height: 36px;
+  }
+}

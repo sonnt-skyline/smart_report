@@ -47,6 +47,23 @@
 .filtered-count {
   color: #666;
   font-style: italic;
+  font-weight: 500;
+}
+
+/* Highlight non-zero problematic statuses */
+.filtered-count.has-blocked {
+  color: #dc3545;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.filtered-count.has-on-hold {
+  color: #ffc107;
+  font-weight: 600;
+  font-style: normal;
+  background: rgba(255, 193, 7, 0.1);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
 }
 
 /* Category Legend Compact */
@@ -202,6 +219,39 @@
 .filter-btn:not(.active) .filter-count {
   background: rgba(0, 0, 0, 0.1);
   color: #666;
+}
+
+/* Special styling for filter count badges */
+.filter-count.blocked-count {
+  background: #dc3545;
+  color: white;
+  animation: pulse-red 2s infinite;
+}
+
+.filter-btn:not(.active) .filter-count.blocked-count {
+  background: #dc3545;
+  color: white;
+}
+
+.filter-count.hold-count {
+  background: #ffc107;
+  color: #212529;
+}
+
+.filter-btn:not(.active) .filter-count.hold-count {
+  background: #ffc107;
+  color: #212529;
+}
+
+@keyframes pulse-red {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
 }
 
 /* Quick Actions */
