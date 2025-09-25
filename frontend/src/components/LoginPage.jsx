@@ -9,7 +9,6 @@ function LoginPage({ onLoginSuccess }) {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [isRegistering, setIsRegistering] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,15 +26,6 @@ function LoginPage({ onLoginSuccess }) {
     setError('');
 
     try {
-      if (isRegistering) {
-        // Register new user
-        const registerData = {
-          ...formData,
-          name: formData.name || formData.email.split('@')[0] // Use email prefix as default name
-        };
-        await authAPI.register(registerData.email, registerData.password, registerData.name);
-      }
-      
       // Login
       const result = await authAPI.login(formData.email, formData.password);
       
@@ -85,37 +75,7 @@ function LoginPage({ onLoginSuccess }) {
         </div>
 
         <div className="login-form-container">
-          <div className="form-tabs">
-            <button 
-              className={`tab-button ${!isRegistering ? 'active' : ''}`}
-              onClick={() => setIsRegistering(false)}
-            >
-              Sign In
-            </button>
-            <button 
-              className={`tab-button ${isRegistering ? 'active' : ''}`}
-              onClick={() => setIsRegistering(true)}
-            >
-              Sign Up
-            </button>
-          </div>
-
           <form onSubmit={handleSubmit} className="login-form">
-            {isRegistering && (
-              <div className="form-group">
-                <label htmlFor="name">Full Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name || ''}
-                  onChange={handleInputChange}
-                  placeholder="Enter your full name"
-                  required={isRegistering}
-                />
-              </div>
-            )}
-
             <div className="form-group">
               <label htmlFor="email">Email Address</label>
               <input
@@ -158,7 +118,7 @@ function LoginPage({ onLoginSuccess }) {
               {isLoading ? (
                 <span className="loading-spinner">⏳</span>
               ) : (
-                isRegistering ? 'Create Account' : 'Sign In'
+                'Sign In'
               )}
             </button>
           </form>
@@ -171,25 +131,16 @@ function LoginPage({ onLoginSuccess }) {
             <div className="quick-login-buttons">
               <button 
                 className="quick-login-btn"
-                onClick={() => handleQuickLogin('test@example.com', 'test123')}
+                onClick={() => handleQuickLogin('user@smartreport.com', 'user123')}
                 disabled={isLoading}
               >
                 <span className="demo-user-icon">👤</span>
-                Demo User
-              </button>
-              
-              <button 
-                className="quick-login-btn"
-                onClick={() => handleQuickLogin('admin@smartreport.com', 'admin123')}
-                disabled={isLoading}
-              >
-                <span className="admin-user-icon">👑</span>
-                Admin Demo
+                Demo User (Alice Johnson)
               </button>
             </div>
 
             <p className="demo-note">
-              Use demo accounts to explore the application without registration
+              Use demo user account to explore the application
             </p>
           </div>
         </div>

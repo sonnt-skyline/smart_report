@@ -301,6 +301,15 @@ export default function WeeklyReportActionList({ actions, onStatusUpdate, onAddA
         const currentUpdate = action.statusUpdates.find(update => update.week === currentWeek);
         const previousUpdate = action.statusUpdates.find(update => update.week === previousWeek);
         
+        // Debug logging for troubleshooting
+        if (action.title.includes("Deliver project milestone") || action.title.includes("Update API documentation")) {
+          console.log(`Debug ${action.title}:`, {
+            currentUpdate,
+            previousUpdate,
+            statusUpdates: action.statusUpdates
+          });
+        }
+        
         // If no current week update, fall back to previous week, then default to 'Not started'
         let workStatus, progress;
         if (currentUpdate) {
@@ -403,7 +412,7 @@ export default function WeeklyReportActionList({ actions, onStatusUpdate, onAddA
                     className={`quick-btn ongoing ${workStatus === 'On-going' ? 'active' : ''}`}
                     onClick={() => handleStatusUpdate(action.id, 'On-going', Math.max(1, Math.min(99, progress || 1)))}
                   >
-                    Resume
+                    {workStatus === 'Not started' ? 'Start' : 'Resume'}
                   </button>
                 </div>
               </div>

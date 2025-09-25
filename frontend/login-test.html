@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Test</title>
+</head>
+<body>
+    <h1>Quick Login Test</h1>
+    <button onclick="testDemoLogin()">Test Demo User Login</button>
+    <button onclick="testAdminLogin()">Test Admin User Login</button>
+    <div id="result"></div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:3001/api';
+        
+        async function testLogin(email, password, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `Testing ${type} login...`;
+            
+            try {
+                console.log(`🔐 Testing ${type} login for:`, email);
+                
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                console.log('📥 Response status:', response.status);
+                console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
+                
+                const data = await response.json();
+                console.log('📦 Response data:', data);
+                
+                if (data.success) {
+                    resultDiv.innerHTML = `✅ ${type} login successful! User: ${data.data.user.name}`;
+                } else {
+                    resultDiv.innerHTML = `❌ ${type} login failed: ${data.error}`;
+                }
+            } catch (error) {
+                console.error(`💥 ${type} login error:`, error);
+                resultDiv.innerHTML = `💥 ${type} login error: ${error.message}`;
+            }
+        }
+        
+        async function testDemoLogin() {
+            await testLogin('test@example.com', 'test123', 'Demo User');
+        }
+        
+        async function testAdminLogin() {
+            await testLogin('admin@smartreport.com', 'admin123', 'Admin');
+        }
+    </script>
+</body>
+</html>

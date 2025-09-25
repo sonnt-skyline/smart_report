@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import WeeklyReportActionList from './components/WeeklyReportActionList';
 import ReportCompositionInterface from './components/ReportCompositionInterface';
+import PreviousReportsList from './components/PreviousReportsList';
 import { weeklyReportAPI } from './utils/api';
 import './components/WeeklyReport.css';
 import './components/WeeklyReportAdditions.css';
+import './components/PreviousReports.css';
 
 function getCurrentWeek() {
   const now = new Date();
@@ -24,13 +26,16 @@ function getPreviousWeek() {
 
 function WeeklyReportPage() {
   const currentWeek = getCurrentWeek();
+  
   const [reportData, setReportData] = useState({
     progress: '',
     blockers: '',
     nextSteps: '',
+    additionalNotes: ''
   });
   const [actionsWithUpdates, setActionsWithUpdates] = useState([]);
   const [allActions, setAllActions] = useState([]); // Store all updated actions before filtering
+  const [showPreviousReports, setShowPreviousReports] = useState(false);
 
   // Load initial actions for the current user
   useEffect(() => {
@@ -138,6 +143,33 @@ function WeeklyReportPage() {
     setAllActions(prev => [...prev, newAction]);
   };
 
+  const handleReportSubmitted = async () => {
+    // Refresh actions data after successful report submission
+    try {
+      console.log('Report submitted successfully, refreshing actions data...');
+      
+      // Add a small delay to ensure backend has processed the updates
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const actions = await weeklyReportAPI.getUserActions();
+      console.log('Actions data refreshed:', actions);
+      
+      // Log current week status updates for debugging
+      const currentWeek = getCurrentWeek();
+      actions.forEach(action => {
+        const currentUpdate = action.statusUpdates.find(update => update.week === currentWeek);
+        if (currentUpdate) {
+          console.log(`Action ${action.title}: ${currentUpdate.progress}% - ${currentUpdate.workStatus}`);
+        }
+      });
+      
+      setAllActions(actions);
+      console.log('Actions state updated after report submission');
+    } catch (error) {
+      console.error('Failed to refresh actions after report submission:', error);
+    }
+  };
+
   const handleRevertAction = (actionId) => {
     // Revert action to previous week's state
     const previousWeek = getPreviousWeek();
@@ -243,12 +275,23 @@ function WeeklyReportPage() {
 
   return (
     <div className="weekly-report-page">
-      <h1>Weekly Report</h1>
-      <p className="week-indicator">Week: {currentWeek}</p>
+      <div className="page-header">
+        <div>
+          <h1>Weekly Report</h1>
+          <p className="week-indicator">Week: {currentWeek}</p>
+        </div>
+        <button 
+          className="view-previous-button"
+          onClick={() => setShowPreviousReports(true)}
+        >
+          📋 View Previous Reports
+        </button>
+      </div>
 
       <div className="report-layout">
         <div className="action-list-section">
-          <h2>This Week's Actions</h2>
+          <h2>Action List</h2>
+          <p className="action-list-description">Showing incomplete and not started actions</p>
           <WeeklyReportActionList
             actions={actionsWithUpdates}
             onStatusUpdate={handleStatusUpdate}
@@ -263,9 +306,17 @@ function WeeklyReportPage() {
             reportData={reportData}
             onInputChange={handleInputChange}
             onGenerateAISummary={generateAISummary}
+            currentWeek={currentWeek}
+            allActions={allActions}
+            onReportSubmitted={handleReportSubmitted}
           />
         </div>
       </div>
+
+      <PreviousReportsList 
+        isVisible={showPreviousReports}
+        onClose={() => setShowPreviousReports(false)}
+      />
     </div>
   );
 }
